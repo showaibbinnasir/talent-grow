@@ -1,0 +1,7 @@
+.items{
+    padding: 25px 0px;
+}
+
+.items:hover{
+    background-color: aliceblue;
+}

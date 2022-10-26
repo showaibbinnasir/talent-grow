@@ -1,12 +1,17 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { createContext } from 'react';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import Navigation from '../component/Navigation/Navigation';
+export const courseContext = createContext();
 
 const Default = () => {
+    const courses = useLoaderData();
     return (
         <div>
-            <Navigation></Navigation>
-            <Outlet></Outlet>
+            <courseContext.Provider value={courses}>
+                <Navigation></Navigation>
+                <Outlet></Outlet>
+            </courseContext.Provider>
         </div>
     );
 };
