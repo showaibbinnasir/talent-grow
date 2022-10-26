@@ -14,7 +14,10 @@ const RightSideDet = () => {
            <div className='flex justify-center'>
                 <img className='h-48' src={data.thumbnail} alt="" />
            </div>
-           <h1 className='text-4xl font-semibold mt-3'>{data.courseName}</h1>
+           <div className='flex justify-center items-center gap-5'>
+                <h1 className='text-4xl font-semibold mt-3'>{data.courseName}</h1>
+                <Button>Download PDF</Button>
+           </div>
            <h1 className='text-2xl font-semibold my-3'>Course Content</h1>
            <ul>
                 {
