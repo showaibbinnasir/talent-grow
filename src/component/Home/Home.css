@@ -1,0 +1,10 @@
+.bannerPart{
+    background-image:linear-gradient(to bottom,rgba(91, 89, 91, 0.73), rgba(74, 73, 70, 0.52)), url("./banner\ \(2\).jpg");
+    background-position: center;
+    background-size: cover;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

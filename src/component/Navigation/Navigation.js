@@ -5,20 +5,20 @@ import './Navigation.css'
 
 const Navigation = () => {
     return (
-        <div className='lg:mx-12 md:mx-6 sm:mx-3 mx-0'>
+        <div>
                     <Navbar
         fluid={true}
         rounded={true}
-        style = {{backgroundColor: 'lightBlue', padding : '0px 15px', borderRadius: '0px'}}
+        style = {{backgroundColor: 'rgba(91, 89, 91, 0.73)', padding : '0px 15px', borderRadius: '0px'}}
         >
-        <Navbar.Brand href="https://flowbite.com/">
-            <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="mr-3 h-6 sm:h-9"
+        <Navbar.Brand>
+            <img 
+            src="https://img.freepik.com/free-vector/magnifying-glass-man-looking-talent-background_23-2147981198.jpg?w=2000"
+            className="mr-3 h-6 rounded-2xl sm:h-9"
             alt="Flowbite Logo"
             />
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite
+            <span className="self-center whitespace-nowrap text-2xl font-bold text-white dark:text-white">
+            TalentGrow
             </span>
         </Navbar.Brand>
         <Navbar.Toggle />

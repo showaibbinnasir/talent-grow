@@ -1,9 +1,11 @@
 .active {
     background-color: whitesmoke;
+    color: black !important; 
     
     
 }
 
 .navItem a {
     padding: 15px 15px;
+    color: white;
 }
