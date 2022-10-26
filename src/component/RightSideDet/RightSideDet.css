@@ -1,0 +1,5 @@
+.downloadBTn{
+    display: flex !important;
+    justify-content: center !important;
+    z-index: 999;
+}
