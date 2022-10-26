@@ -32,7 +32,7 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             handleUpdate(name, photo)
-            
+            navigate(from, {replace: true})
         })
         .catch(e => console.log(e))
     }
