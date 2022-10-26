@@ -2,11 +2,13 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { Button, Label, TextInput } from 'flowbite-react';
 import React from 'react';
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../context/AuthContext/AuthContext';
 
 const Register = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const {loginProvider, createUser, updateUserProfile} = useContext(AuthProvider)
     const googleLoginProvider = new GoogleAuthProvider()
     const handleGoogleLogin = () => {
@@ -14,7 +16,7 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
-            navigate('/')
+            navigate(from, {replace: true})
         })
         .catch(e => console.log(e))
     }
@@ -30,6 +32,7 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             handleUpdate(name, photo)
+            
         })
         .catch(e => console.log(e))
     }
