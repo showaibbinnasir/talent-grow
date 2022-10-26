@@ -1,9 +1,18 @@
 import { Button, Navbar } from 'flowbite-react';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthProvider } from '../../context/AuthContext/AuthContext';
 import './Navigation.css'
 
 const Navigation = () => {
+    const {user, logOut} = useContext(AuthProvider)
+    const handleLogOut = () => {
+        logOut()
+        .then(()=> {})
+        .catch(error => console.error(error))
+      }
+      console.log(user)
     return (
         <div>
                     <Navbar
@@ -27,7 +36,19 @@ const Navigation = () => {
             <NavLink to='/all-courses'>All Courses</NavLink>
             <NavLink to='/blog'>Blog</NavLink>
             <button>Dark</button>
-            <button>Profile</button>
+            <div className='flex justify-center items-center'>
+                {
+                    user?.uid ?
+                    <div className='flex items-center gap-3'>
+                        <h1>{user?.displayName}</h1>
+                        <button className='bg-red-500 p-3 text-white' onClick={handleLogOut}>Logout</button>
+                    </div> :
+                    <div>
+                        <Link to='/login'>Login</Link>
+                        <Link to='/register'>Register</Link>
+                    </div>
+                }
+            </div>
         </Navbar.Collapse>
         </Navbar>
         </div>
