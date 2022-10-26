@@ -5,7 +5,9 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 const RightSideDet = () => {
     const data = useLoaderData();
     const navigate = useNavigate();
-    
+    const navigation = (id) => {
+        navigate(`/details/${id}`)
+    }
     console.log(data)
     return (
         <div className='mt-5'>
@@ -21,11 +23,11 @@ const RightSideDet = () => {
            </ul>
            <h1 className='text-2xl font-semibold my-5'>Instructor</h1>
            <div className='flex justify-center'>
-                <img className='h-20' src={data.instructorImage} alt="" />
+                <img className='h-20 rounded-full' src={data.instructorImage} alt="" />
            </div>
            <h1>Name : {data.instructor}</h1>
            <div className='flex justify-center my-5'>
-                <Button>Get Access</Button>
+                <Button onClick={()=> navigation(data.course_id)}>Get Access</Button>
            </div>
         </div>
     );
