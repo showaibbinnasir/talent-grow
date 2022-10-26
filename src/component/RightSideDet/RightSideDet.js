@@ -6,7 +6,7 @@ const RightSideDet = () => {
     const data = useLoaderData();
     const navigate = useNavigate();
     const navigation = (id) => {
-        navigate(`/details/${id}`)
+        navigate(`/checkout/${id}`)
     }
     console.log(data)
     return (
