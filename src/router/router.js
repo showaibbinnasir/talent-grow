@@ -1,6 +1,7 @@
 import Blog from "../component/Blog/Blog";
 import CheckOut from "../component/CheckOut/CheckOut";
 import Courses from "../component/Courses/Courses";
+import ErrorPage from "../component/ErrorPage/ErrorPage";
 import Home from "../component/Home/Home";
 import Login from "../component/Login/Login";
 import PrivateRouter from "../component/PrivateRouter/PrivateRouter";
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
         path : '/',
         element: <Default></Default>,
         loader: ()=> fetch('http://localhost:5000/catagories'),
+        errorElement : <ErrorPage></ErrorPage>,
         children: [
             {
                 path : '/',
