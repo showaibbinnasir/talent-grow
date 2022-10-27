@@ -6,13 +6,18 @@ import { AuthProvider } from '../../context/AuthContext/AuthContext';
 import './Navigation.css'
 
 const Navigation = () => {
-    const {user, logOut} = useContext(AuthProvider)
+    const {user, logOut, dark, setDark} = useContext(AuthProvider)
     const handleLogOut = () => {
         logOut()
         .then(()=> {})
         .catch(error => console.error(error))
       }
-      console.log(user)
+      const handleDarkMode = () => {
+        setDark(true)
+      }
+      const handleLightMode = () => {
+        setDark(false)
+      }
     return (
         <div>
                     <Navbar
@@ -35,7 +40,10 @@ const Navigation = () => {
             <NavLink className={(isActive) => isActive ? 'active' : undefined} to='/'>Home</NavLink>
             <NavLink to='/all-courses'>All Courses</NavLink>
             <NavLink to='/blog'>Blog</NavLink>
-            <button>Dark</button>
+            {
+                dark ? <button onClick={handleLightMode}>Light</button> : 
+                <button onClick={handleDarkMode}>Dark</button>
+            }
             <div className='flex justify-center items-center'>
                 {
                     user?.uid ?

@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 export const AuthProvider = createContext();
 const auth = getAuth(app)
 const AuthContext = ({children}) => {
-    
+    const [dark, setDark] = useState(false)
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -31,6 +31,10 @@ const AuthContext = ({children}) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
+
+    const githubLogin = (provider) => {
+        return signInWithPopup(auth, provider)
+    }
     const loginUser = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
@@ -48,7 +52,7 @@ const AuthContext = ({children}) => {
         }
     }, [])
 
-    const authInfo = {user, loginProvider,logOut,createUser, loginUser, updateUserProfile, loading}
+    const authInfo = {user, githubLogin, loginProvider,logOut,createUser, loginUser, updateUserProfile, loading, dark, setDark}
     return (
         <AuthProvider.Provider value={authInfo}>
             {children}
