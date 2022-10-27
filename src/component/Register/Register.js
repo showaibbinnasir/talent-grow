@@ -1,4 +1,4 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { Button, Label, TextInput } from 'flowbite-react';
 import React from 'react';
 import { useState } from 'react';
@@ -12,8 +12,9 @@ const Register = () => {
     const location = useLocation();
     
     const from = location.state?.from?.pathname || '/';
-    const {loginProvider, createUser, updateUserProfile} = useContext(AuthProvider)
+    const {loginProvider, createUser, updateUserProfile, githubLogin} = useContext(AuthProvider)
     const googleLoginProvider = new GoogleAuthProvider()
+    const gitHUbLoginProvider = new GithubAuthProvider();
     const handleGoogleLogin = () => {
         loginProvider(googleLoginProvider)
         .then(result => {
@@ -21,6 +22,16 @@ const Register = () => {
             console.log(user);
             setError('')
             navigate(from, {replace: true})
+        })
+        .catch(e => setError(e.message))
+    }
+    const handleGitHubLogin = () => {
+        githubLogin(gitHUbLoginProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            setError('');
+            navigate(from, {replace : true})
         })
         .catch(e => setError(e.message))
     }
@@ -125,6 +136,8 @@ const Register = () => {
             <div className='flex justify-center mt-5'>
                 <div>
                     <Button onClick={handleGoogleLogin}>Sign in With Google</Button>
+                    <br />
+                    <Button onClick={handleGitHubLogin}>Sign in With GitHub</Button>
                 </div>
             </div>
             <p><small className='text-red-400'>{error}</small></p>

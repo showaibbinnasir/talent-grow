@@ -91,6 +91,7 @@ const Login = () => {
             <div className='flex justify-center mt-5'>
                 <div>
                     <Button onClick={handleGoogleLogin}>Sign in With Google</Button>
+                    <br />
                     <Button onClick={handleGitHubLogin}>Sign in With GitHub</Button>
                 </div>
             </div>

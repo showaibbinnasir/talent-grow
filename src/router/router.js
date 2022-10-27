@@ -15,12 +15,12 @@ const router = createBrowserRouter([
     {
         path : '/',
         element: <Default></Default>,
-        loader: ()=> fetch('http://localhost:5000/catagories'),
+        loader: ()=> fetch('https://telant-grow-server.vercel.app/catagories'),
         errorElement : <ErrorPage></ErrorPage>,
         children: [
             {
                 path : '/',
-                loader: ()=> fetch('http://localhost:5000/catagories'),
+                loader: ()=> fetch('https://telant-grow-server.vercel.app/catagories'),
                 element: <Home></Home>
             },
             {
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path : 'course/:id',
-                        loader: ({params})=> fetch(`http://localhost:5000/courses/${params.id}`),
+                        loader: ({params})=> fetch(`https://telant-grow-server.vercel.app/courses/${params.id}`),
                         element:<RightSideDet></RightSideDet>
                     }
                     
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
             },
             {
                 path : 'checkout/:id',
-                loader: ({params})=> fetch(`http://localhost:5000/courses/${params.id}`),
+                loader: ({params})=> fetch(`https://telant-grow-server.vercel.app/courses/${params.id}`),
                 element: <PrivateRouter><CheckOut></CheckOut></PrivateRouter>
             },
             {
