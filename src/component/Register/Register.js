@@ -1,13 +1,16 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Button, Label, TextInput } from 'flowbite-react';
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../context/AuthContext/AuthContext';
 
 const Register = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState();
     const location = useLocation();
+    
     const from = location.state?.from?.pathname || '/';
     const {loginProvider, createUser, updateUserProfile} = useContext(AuthProvider)
     const googleLoginProvider = new GoogleAuthProvider()
@@ -16,9 +19,10 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            setError('')
             navigate(from, {replace: true})
         })
-        .catch(e => console.log(e))
+        .catch(e => setError(e.message))
     }
     const handleRegistration = (e) => {
         e.preventDefault();
@@ -31,10 +35,12 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            setError('')
+            form.reset();
             handleUpdate(name, photo)
             navigate(from, {replace: true})
         })
-        .catch(e => console.log(e))
+        .catch(e => setError(e.message))
     }
     const handleUpdate = (name, photoUrl) => {
         const profileInfo = {
@@ -121,6 +127,7 @@ const Register = () => {
                     <Button onClick={handleGoogleLogin}>Sign in With Google</Button>
                 </div>
             </div>
+            <p><small className='text-red-400'>{error}</small></p>
         </div>
     );
 };

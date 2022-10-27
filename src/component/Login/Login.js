@@ -1,13 +1,13 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Button, Label, TextInput } from 'flowbite-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../context/AuthContext/AuthContext';
 
 const Login = () => {
     
-    
+    const [error, setError] = useState('');
     const navigate = useNavigate()
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -18,9 +18,10 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            setError('')
             navigate(from, {replace : true})
         })
-        .catch(e => console.log(e))
+        .catch(e => setError(e.message))
     }
 
     const handleUserLogin = (e) => {
@@ -32,8 +33,10 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user)
+            setError('')
             navigate(from, {replace : true})
         })
+        .catch(e => setError(e.message))
     }
     return (
         <div className='mx-12'>
@@ -79,6 +82,7 @@ const Login = () => {
                     <Button onClick={handleGoogleLogin}>Sign in With Google</Button>
                 </div>
             </div>
+            <p><small className='text-red-400'>{error}</small></p>
         </div>
     );
 };
